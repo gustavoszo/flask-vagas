@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block titulo %}
+    Criar vaga
+{% endblock %}
+
+{% block conteudo %}
+    {% if not vaga %}
+        <div class="container" style="margin-top: 50px">
+            <h1 class="text-center mt-2 mb-2">Nova Vaga</h1>
+            <form method="post" class="form-register cadastro">
+                {{form.hidden_tag()}}
+
+                {{form.nome(class="form-control", placeholder="Nome da vaga: ")}}
+                {{form.localidade(class="form-control", placeholder="Localidade: ")}}
+                <div class="row">
+                    <div class="col-9">
+                        {{form.salario(class="form-control", placeholder="Salário: ")}}
+                    </div>
+                    <div class="col-3">
+                        {{form.moeda(class="form-control", placeholder="Moeda: ")}}
+                    </div>
+                </div>
+                {{form.responsabilidades(class="form-control", placeholder="Responsabilidades: ")}}
+            
+                {{form.submit(class="btn btn-lg btn-success")}}
+            </form>
+        </div>
+    {% else %}
+        <div class="container" style="margin-top: 50px">
+            <h1 class="text-center mt-2 mb-2">Atualizar vaga de {{vaga.nome}}</h1>
+            <form method="post" class="form-register cadastro">
+                {{form.hidden_tag()}}
+
+                {{form.nome(class="form-control", placeholder="Nome da vaga: ", value=vaga.nome)}}
+                {{form.localidade(class="form-control", placeholder="Localidade: ",value=vaga.localidade)}}
+                <div class="row">
+                    <div class="col-9">
+                        {{form.salario(class="form-control", placeholder="Salário: ", value=vaga.salario)}}
+                    </div>
+                    <div class="col-3">
+                        {{form.moeda(class="form-control", placeholder="Moeda: ", value=vaga.moeda)}}
+                    </div>
+                </div>
+                {{form.responsabilidades(class="form-control", placeholder="Responsabilidades: ", value=vaga.responsabilidades)}}
+            
+                {{form.submit(class="btn btn-lg btn-success")}}
+            </form>
+        </div>
+    {% endif %}
+{% endblock %}

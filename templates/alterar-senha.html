@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block titulo %}
+    Vagas - Recuperar senha
+{% endblock %}
+
+{% block conteudo %}
+    <div class="borda">
+        <h1 class="text-center mt-2 mb-2">Alterar senha</h1>
+        <form method="post" class="form-signin formAlterarSenha">
+            {{form.hidden_tag()}}
+            
+            {{form.senha(class="form-control", placeholder="Senha: ")}}
+            {{form.conf_senha(class="form-control", placeholder="Confirmar senha: ")}}
+            {{form.submit(class="btn btn-lg btn-success", placeholder="Linkedin: ")}}
+        </form>
+    </div>
+{% endblock %}

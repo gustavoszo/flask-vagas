@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block titulo %}
+    Home
+{% endblock %}
+
+{% block conteudo %}
+    <div class="container">
+        <h1 class="text-center mt-2 mb-2">Carreiras em Python</h1>
+        <img class="img-fluid" src="{{url_for('static', filename='carreira.jpg')}}" alt="imagem carreira">
+        <h2 class="text-center mb-2">Sobre o site</h2>
+        <p class="lead">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor illum voluptatibus, nulla, corporis officia adipisci quidem molestias vitae assumenda eaque, aliquid consectetur. Perspiciatis nostrum quam repellendus? Odio, nulla! Officiis, accusantium? Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum reiciendis nostrum, autem eaque, officiis accusantium vel maiores magnam maxime asperiores pariatur rerum quidem nobis sunt perspiciatis quae commodi aspernatur ex! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam aliquid tenetur possimus, laborum, deserunt similique sed autem eaque molestias consectetur doloremque. Excepturi recusandae a, natus enim sequi minima beatae ex.</p>
+        <h2 class="text-center">Vagas abertas</h2>
+        {% for vaga in paginacao.vagas %}
+            {% include 'includes/vagas.html' %}
+        {% endfor %}
+    </div>
+    <div style="margin-top: 30px; width: 200px; margin: auto;">
+        <nav aria-label="Page navigation example">
+            <ul class="pagination">
+                {% if paginacao.pagina == 1 %}
+                    <li class="page-item"><a class="page-link item-disabled">Anterior</a></li>
+                {% else %}
+                    <li class="page-item"><a class="page-link" href="/?pagina={{paginacao.pagina-1}}">Anterior</a></li>
+                {% endif %}
+                <li class="page-item"><a class="page-link item-disabled">{{paginacao.pagina}}</a></li>
+                {% if paginacao.pagina == paginacao.total_paginas %}
+                    <li class="page-item"><a class="page-link item-disabled">Próximo</a></li>
+                {% else %}
+                    <li class="page-item"><a class="page-link" href="/?pagina={{paginacao.pagina+1}}">Próximo</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+    </div>
+{% endblock %}
+
+</body>
+</html>

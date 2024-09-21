@@ -1,0 +1,67 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+  <div class="container-fluid">
+    <a class="navbar-brand">PyhtonVagas</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav me-auto">
+        <a class="nav-link active" aria-current="page" href="{{url_for('home')}}">Home</a>
+        <a class="nav-link" href="{{url_for('home')}}">Produtos</a>
+      </div>
+      {% if current_user.is_authenticated and current_user.perfil == 'admin' %}
+        <div class="navbar-nav ms-auto">
+            <a class="nav-link" href="{{url_for('admin')}}">
+              <i class="fa-solid fa-pen-to-square"></i>
+              Vagas
+            </a>
+            <a class="nav-link"> <i class="fa-regular fa-user"></i> </a>
+              <ul class="nav">
+                <li class="dropdown">
+                  <div style="padding: 6px 10px 0px 0px;">
+                    <a class="dropdown" data-toggle="dropdown" style="color: gray;">{{ current_user.nome }}</a>
+                  </div>
+                  <ul id="products-menu"
+                        class="dropdown-menu clearfix" 
+                        role="menu">
+                        <li><a href="{{url_for('editar_usuario')}}" style="color: gray;">Perfil</a></li>
+                        <li><a href="{{url_for('inscricoes_usuario')}}" style="color: gray;">Inscrições</a></li>
+                  </ul>
+                </li>
+              </ul>
+            <a class="nav-link" href="{{url_for('logout')}}">
+              <i class="fa-solid fa-right-from-bracket"></i>
+              Sair
+            </a> 
+        </div>
+      {% elif current_user.is_authenticated and current_user.perfil == 'usuario' %}
+        <div class="navbar-nav ms-auto">
+          <a class="nav-link"> <i class="fa-regular fa-user"></i> </a>
+          <ul class="nav">
+            <li class="dropdown">
+              <div style="padding: 6px 10px 0px 0px;">
+                <a class="dropdown" data-toggle="dropdown" style="color: gray;">{{ current_user.nome }}</a>
+              </div>
+              <ul id="products-menu"
+                    class="dropdown-menu clearfix caixa" 
+                    role="menu">
+                    <li><a href="{{url_for('editar_usuario')}}" class="link-menu">Perfil</a></li>
+                    <li><a href="{{url_for('inscricoes_usuario')}}" class="link-menu">Minhas inscriçoes</a></li>
+              </ul>
+            </li>
+          </ul>
+          <a class="nav-link" href="{{url_for('logout')}}">
+            <i class="fa-solid fa-right-from-bracket"></i>
+            Sair
+          </a> 
+        </div>
+      {% else %}
+          <div class="navbar-nav ms-auto">
+              <a class="nav-link" href="{{url_for('login')}}">Login</a>
+              <a class="nav-link" href="{{url_for('cadastro')}}">Cadastro</a>
+          </div>
+      {% endif %}
+    </div>
+  </div>
+</nav>
+<div style="height: 50px;"></div>

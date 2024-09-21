@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block titulo %}
+    Login
+{% endblock %}
+
+{% block conteudo %}
+    {% include 'includes/modal_usuario.html' %}
+    <div class="borda">
+        <h1 class="text-center mt-2 mb-2">Entre na sua conta</h1>
+        <form method="post" class="form-signin formlogin">
+            {{form.hidden_tag()}}
+            
+            {{form.email(class="form-control", placeholder="E-mail: ")}}
+            {{form.senha(class="form-control", placeholder="Senha: ")}}
+            <div class="checkbox mb-3">
+                <div class="checkbox mb-3">
+                    <a data-bs-toggle="modal" data-bs-target="#modalsenha" style="cursor: pointer;">Esqueci minha senha</a>
+                </div>
+                <h5>Ainda não tem uma conta?</h5>
+                <a class="text-secondary", href="{{url_for('cadastro')}}">Cadastre-se</a>
+            </div>
+            {{form.submit(class="btn btn-lg btn-success")}}
+        </form>
+    </div>
+{% endblock %}
+

@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block titulo %}
+    Vagas - Inscrições
+{% endblock %}
+
+{% block conteudo %}
+    <h1 class="text-center mt-2 mb-2">Incricões realizadadas</h1>
+    <h5 class="text-center mt-2 mb-2">Todas as suas inscrições realizadadas no site</h5>
+    <div style="padding: 30px;"></div>
+
+    {% for vaga in paginacao.vagas %}
+        {% include 'includes/vagas-usuario.html' %}
+    {% endfor %}
+    <div class="container">
+        <div style="margin-top: 30px; width: 200px; margin: auto;">
+            <nav aria-label="Page navigation example">
+                <ul class="pagination">
+                    {% if paginacao.pagina == 1 %}
+                        <li class="page-item"><a class="page-link item-disabled">Anterior</a></li>
+                    {% else %}
+                        <li class="page-item"><a class="page-link" href="/inscricoes-usuario?pagina={{paginacao.pagina-1}}">Anterior</a></li>
+                    {% endif %}
+                    <li class="page-item"><a class="page-link item-disabled">{{paginacao.pagina}}</a></li>
+                    {% if paginacao.pagina == paginacao.total_paginas %}
+                        <li class="page-item"><a class="page-link item-disabled">Próximo</a></li>
+                    {% else %}
+                        <li class="page-item"><a class="page-link" href="/inscricoes-usuario?pagina={{paginacao.pagina+1}}">Próximo</a></li>
+                    {% endif %}
+                </ul>
+            </nav>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+{% block titulo %}
+    Vaga - Inscrição
+{% endblock %}
+
+{% block conteudo %}
+    <div class="container">
+        <h1 class="text-center mt-2 mb-2">Inscrição</h1>    '
+        <hr style="color: rgb(120, 120, 120);">
+
+        <div>
+            <h4>
+                {{vaga.nome}}
+            </h4>
+            <div>
+                <strong>Localidade:</strong>
+                {{vaga.localidade}}
+            </div>
+            <div>
+                <strong>Salário:</strong>
+                {{vaga.salario}}
+            </div>
+            <div>
+                <strong>Responsabilidades:</strong>
+                {{vaga.responsabilidades}}
+            </div>
+            <div>
+        </div>
+
+        <div style="margin-top: 80px;">
+            <h1 class="text-center mt-2 mb-2">Suas informações</h1>    
+            <hr style="color: rgb(120, 120, 120);">
+            
+            <div>
+                <h4>
+                {{usuario.nome}}
+            </h4>
+            <div>
+                <strong>E-mail:</strong>
+                {{usuario.email}}
+            </div>
+            <div>
+                <strong>Linkedin:</strong>
+                {{usuario.linkedin}}
+            </div>
+            <div>
+                <strong>Experiências:</strong>
+                {{usuario.experiencia}}
+            </div>
+            <div style="padding-top: 20px;">
+                <a style='text-decoration: none;', href="{{url_for('editar_usuario')}}">Alterar informações</a>
+            </div>
+        </div>
+        <div class="btn-confirmacao"> 
+            <a class="btn btn-outline-primary" href="/inscricao/{{vaga.id}}/confirmacao">Confirmar inscrição</a>
+        </div>
+    </div>
+{% endblock %}

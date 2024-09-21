@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block titulo %}
+    Vagas
+{% endblock %}
+
+{% block conteudo %}
+
+    <h1 class="text-center mt-2 mb-2">Vagas cadastradas no sistema</h1>
+
+    <div style="padding: 30px;"></div>
+    
+    <a class="btn btn-primary" href="{{url_for('novaVaga')}}">Criar nova vaga</a>
+    
+    <div style="padding: 10px;"></div>
+
+    <table class="table table-striped table-hover" id="tabela">
+        <thead>
+            <tr>
+                <td>Nome</td>
+                <td>Localidade</td>
+                <td>Moeda</td>
+                <td>Salário</td>
+                <td>Responsabilidades</td>
+                <td>Ações</td>
+            </tr>
+        </thead>
+        <tbody>
+            {% if vagas %}
+                {% for vaga in vagas %}
+                {% include 'includes/modal_vagas.html' %}
+                <tr>
+                    <td>{{vaga.nome}}</td>
+                    <td>{{vaga.localidade}}</td>
+                    <td>{{vaga.moeda}}</td>
+                    <td>{{vaga.salario}}</td>
+                    <td><i class="fa-solid fa-eye" data-bs-toggle="modal" data-bs-target="#modalresponsabilidades-{{vaga.id}}" style="cursor: pointer;"></i></td>
+                    <td>
+                        <a href="/editar-vaga/{{vaga.id}}"><i class="fa-solid fa-pen-to-square"></i></a>
+                        <a href="*" data-bs-toggle="modal" data-bs-target="#modalexcluir-{{vaga.id}}"><i class="fa-solid fa-trash" style="color: black"></i></a>
+                    </td>
+                </tr>
+                {% endfor %}
+            {% endif %}
+        </tbody>
+    </table>
+
+{% endblock %}
